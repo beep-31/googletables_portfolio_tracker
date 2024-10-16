@@ -1,0 +1,153 @@
+{
+    "zora": [
+        {
+            "Symbol": "ETH",
+            "Amount": 0.000510007905094162,
+            "Price": 2617.517595946705,
+            "Total": 1.33
+        }
+    ],
+    "zksync": [
+        {
+            "Symbol": "ETH",
+            "Amount": 7.652633865055e-06,
+            "Price": 2617.517595946705,
+            "Total": 0.02
+        }
+    ],
+    "scroll": [
+        {
+            "Symbol": "ETH",
+            "Amount": 0.012201918424572623,
+            "Price": 2617.517595946705,
+            "Total": 31.94
+        }
+    ],
+    "ethereum": [
+        {
+            "Symbol": "USDC",
+            "Amount": 0.007148,
+            "Price": 1.001,
+            "Total": 0.01
+        },
+        {
+            "Symbol": "ETH",
+            "Amount": 0.000682431969930954,
+            "Price": 2617.517595946705,
+            "Total": 1.79
+        }
+    ],
+    "linea": [
+        {
+            "Symbol": "ETH",
+            "Amount": 5.766798565892e-06,
+            "Price": 2617.517595946705,
+            "Total": 0.02
+        },
+        {
+            "Symbol": "LXP",
+            "Amount": 330,
+            "Price": 0,
+            "Total": 0
+        },
+        {
+            "Symbol": "STG",
+            "Amount": 8.004656061e-05,
+            "Price": 0.303976,
+            "Total": 0.0
+        }
+    ],
+    "polygon-pos": [
+        {
+            "Symbol": "WETH",
+            "Amount": 1.4e-17,
+            "Price": 2615.81,
+            "Total": 0.0
+        },
+        {
+            "Symbol": "POL",
+            "Amount": 2.8786865203379133,
+            "Price": 0.36927,
+            "Total": 1.06
+        }
+    ],
+    "base": [
+        {
+            "Symbol": "WETH",
+            "Amount": 0.000346970406647992,
+            "Price": 2620.24,
+            "Total": 0.91
+        },
+        {
+            "Symbol": "KURBI",
+            "Amount": 0.1,
+            "Price": 0.00055843,
+            "Total": 0.0
+        },
+        {
+            "Symbol": "USDC",
+            "Amount": 0.037608,
+            "Price": 1.001,
+            "Total": 0.04
+        },
+        {
+            "Symbol": "WGC",
+            "Amount": 200,
+            "Price": 6.388e-05,
+            "Total": 0.01
+        },
+        {
+            "Symbol": "ETH",
+            "Amount": 0.011600524905584627,
+            "Price": 2617.517595946705,
+            "Total": 30.36
+        }
+    ],
+    "optimistic-ethereum": [
+        {
+            "Symbol": "ETH",
+            "Amount": 0.000273719286904776,
+            "Price": 2617.517595946705,
+            "Total": 0.72
+        }
+    ],
+    "binance_smart": [
+        {
+            "Symbol": "BNB",
+            "Amount": 0.002777567,
+            "Price": 600.6577296151743,
+            "Total": 1.67
+        },
+        {
+            "Symbol": "JOE",
+            "Amount": 5.227360391711784,
+            "Price": 0.347595,
+            "Total": 1.82
+        },
+        {
+            "Symbol": "POSI",
+            "Amount": 0.0001,
+            "Price": 0.00681012,
+            "Total": 0.0
+        },
+        {
+            "Symbol": "TANGYUAN",
+            "Amount": 1e-09,
+            "Price": 2.08167e-10,
+            "Total": 0.0
+        },
+        {
+            "Symbol": "USDC",
+            "Amount": 4.4999999999994e-05,
+            "Price": 1.001,
+            "Total": 0.0
+        },
+        {
+            "Symbol": "WETH",
+            "Amount": 0.001000000000000015,
+            "Price": 2618.69,
+            "Total": 2.62
+        }
+    ],
+    "Wallet Balance": 74.32
+}
