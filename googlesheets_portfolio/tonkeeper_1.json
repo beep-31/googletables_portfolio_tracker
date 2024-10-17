@@ -1,0 +1,59 @@
+{
+    "the-open-network": [
+        {
+            "Symbol": "TON",
+            "Amount": 2.947133774,
+            "Price": 5.180538473842022,
+            "Total": 15.27
+        },
+        {
+            "Symbol": "tsTON",
+            "Amount": 0,
+            "Price": 5.45698411,
+            "Total": 0.0
+        },
+        {
+            "Symbol": "STON",
+            "Amount": 0.342114702,
+            "Price": 3.91,
+            "Total": 1.34
+        },
+        {
+            "Symbol": "DFC",
+            "Amount": 55.88738551,
+            "Price": 0.160155,
+            "Total": 8.95
+        },
+        {
+            "Symbol": "WEB3",
+            "Amount": 22.362,
+            "Price": 0.263768,
+            "Total": 5.9
+        },
+        {
+            "Symbol": "USDT",
+            "Amount": 0,
+            "Price": 0.9998,
+            "Total": 0.0
+        },
+        {
+            "Symbol": "ARBUZ",
+            "Amount": 2.14491698,
+            "Price": 0.139067,
+            "Total": 0.3
+        },
+        {
+            "Symbol": "$RECA",
+            "Amount": 150.467265179,
+            "Price": 0.187786,
+            "Total": 28.26
+        },
+        {
+            "Symbol": "NOT",
+            "Amount": 15.901390615,
+            "Price": 0.007856900492457991,
+            "Total": 0.12
+        }
+    ],
+    "Wallet Balance": 60.14
+}

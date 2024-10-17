@@ -1,62 +1,91 @@
-import os
+import os.path
+from datetime import datetime
 import json
-import requests
-from dotenv import load_dotenv
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 
-# load secret variables
+SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
-load_dotenv()
+SAMPLE_SPREADSHEET_ID = "1qXRcsg5kWta1GScwcEeRpqluvjBe88iC1_UNXi96NnI"
 
-COINMARKETCAP_API = os.getenv("COINMARKET_CAP_API")
-COINSTATS_API = os.getenv("COINSTATS_API")
-ERC_WALLET = os.getenv("ERC_WALLET_ADDRESS")
+ERC_JSON_PATH = "ERC_wallet_data_(065c).json"
+TONKEEPER_JSON_PATH = "tonkeeper_1.json"
+TONKEEPER_2_JSON_PATH = "tonkeeper_2.json"
 
-# erc-20 wallet analysis using coinstats API
+def update_spreadsheet(spreedsheet_name, json_path, sheet):
 
-erc_url = f"https://openapiv1.coinstats.app/wallet/balances?address={ERC_WALLET}&networks=all"
-headers = {"accept": "application/json", "X-API-KEY":COINSTATS_API}
-response = requests.get(erc_url, headers=headers)
-ERC_data = json.loads(response.text)
+  with open(json_path, 'r') as file:
+    data = json.load(file)
+  values =[]
+  for network, assets in data.items():
+    if network == "Wallet Balance":
+      continue
+    for asset in assets:
+      values.append([network, asset["Symbol"], asset["Amount"], asset["Price"], asset["Total"]])
 
-data_to_save = {}
+  if "Wallet Balance" in data:
+    wallet_balance = data["Wallet Balance"]
+    values.append(["Wallet Balance", "", "", "", wallet_balance])
+    
+  body = {
+    "values": values
+  }
 
-wallet_total_balance = 0
+  update_range = spreedsheet_name + "!A2"
+  sheet.values().update(
+    spreadsheetId = SAMPLE_SPREADSHEET_ID,
+    range = update_range,
+    valueInputOption = "RAW",
+    body = body
+  ).execute()
 
-for entry in ERC_data:
-    blockchain = entry["blockchain"]
-    print(f"Blockchain: {blockchain}")
-    total_balance = 0
-    tokens = []
-    for balance in entry["balances"]:
-        symbol = balance["symbol"]
-        amount = balance["amount"]
-        price = balance["price"]
-        total_balance = round(amount * price, 2) 
-        print(f"Symbol: {symbol}")
-        print(f"Amount: {amount}")
-        print(f"Total: {total_balance}$")
-        wallet_total_balance += total_balance
-        tokens.append({
-            "Symbol": symbol,
-            "Amount": amount,
-            "Price": price,
-            "Total": total_balance
-        })
-    data_to_save[blockchain] = tokens
-    print("\n")
+  today = datetime.today().strftime("%Y-%m-%d")
+  body = {
+    "values": [[today]]
+  }
 
-#saving data to JSON
+  update_range = spreedsheet_name + "!A1"
+  sheet.values().update(
+    spreadsheetId = SAMPLE_SPREADSHEET_ID,
+    range = update_range,
+    valueInputOption = "RAW",
+    body = body
+  ).execute()
 
-data_to_save["Wallet Balance"] = wallet_total_balance
-with open('ERC_wallet_data_(065c).json', 'w') as file:
-    json.dump(data_to_save, file, indent=4)
+  print("The data was written successfully!")
 
-print("Data was saved to ERC_wallet_data_(065c).json")
+def main():
+  creds = None
+  # The file token.json stores the user's access and refresh tokens, and is
+  # created automatically when the authorization flow completes for the first
+  # time.
+  if os.path.exists("token.json"):
+    creds = Credentials.from_authorized_user_file("token.json", SCOPES)
+  # If there are no (valid) credentials available, let the user log in.
+  if not creds or not creds.valid:
+    if creds and creds.expired and creds.refresh_token:
+      creds.refresh(Request())
+    else:
+      flow = InstalledAppFlow.from_client_secrets_file(
+          "credentials.json", SCOPES
+      )
+      creds = flow.run_local_server(port=0)
+    # Save the credentials for the next run
+    with open("token.json", "w") as token:
+      token.write(creds.to_json())
 
-        
+  try:
+    service = build("sheets", "v4", credentials=creds)
+    sheet = service.spreadsheets()
+    update_spreadsheet('Metamask', ERC_JSON_PATH, sheet)
+    update_spreadsheet('Tonkeeper', TONKEEPER_JSON_PATH, sheet)
+    update_spreadsheet('Tonkeeper2', TONKEEPER_2_JSON_PATH, sheet)
 
+  except HttpError as err:
+    print(err)
 
-
-
-
-
+if __name__ == "__main__":
+  main()

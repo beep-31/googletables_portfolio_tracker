@@ -1,0 +1,17 @@
+{
+    "the-open-network": [
+        {
+            "Symbol": "TON",
+            "Amount": 0.894235443,
+            "Price": 5.180538473842022,
+            "Total": 4.63
+        },
+        {
+            "Symbol": "USDT",
+            "Amount": 4.9e-05,
+            "Price": 0.9998,
+            "Total": 0.0
+        }
+    ],
+    "Wallet Balance": 4.63
+}
